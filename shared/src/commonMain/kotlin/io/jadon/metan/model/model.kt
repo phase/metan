@@ -40,6 +40,8 @@ object SeaTile : Tile {
 
 class TileGrid(val size: Int = 5) {
     val tiles = Array(size) { arrayOfNulls<Tile>(size) }
+
+    fun get(x: Int, y: Int) = tiles[y][x]
 }
 
 fun generateBoard(size: Int = 5): TileGrid {

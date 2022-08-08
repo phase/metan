@@ -11,6 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		A62B3A3E28A1D30500C403B0 /* TileGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B3A3D28A1D30500C403B0 /* TileGridView.swift */; };
+		A62B3A3F28A1D30500C403B0 /* TileGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62B3A3D28A1D30500C403B0 /* TileGridView.swift */; };
 		A68A097F28A09CCF00355913 /* macosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A097E28A09CCF00355913 /* macosApp.swift */; };
 		A68A098128A09CCF00355913 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A098028A09CCF00355913 /* ContentView.swift */; };
 		A68A098328A09CD000355913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68A098228A09CD000355913 /* Assets.xcassets */; };
@@ -18,7 +20,10 @@
 		A68A099128A09CD100355913 /* macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099028A09CD100355913 /* macosTests.swift */; };
 		A68A099B28A09CD100355913 /* macosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099A28A09CD100355913 /* macosUITests.swift */; };
 		A68A099D28A09CD100355913 /* macosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099C28A09CD100355913 /* macosUITestsLaunchTests.swift */; };
-		A68A09BB28A0CE8E00355913 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A09BA28A0CE8E00355913 /* Hexagon.swift */; };
+		A68A09BB28A0CE8E00355913 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A09BA28A0CE8E00355913 /* Polygon.swift */; };
+		A68A09BD28A186C200355913 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A09BA28A0CE8E00355913 /* Polygon.swift */; };
+		A68A09C028A1876800355913 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68A09BF28A1876800355913 /* GameAssets.xcassets */; };
+		A68A09C128A1876800355913 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68A09BF28A1876800355913 /* GameAssets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +63,7 @@
 		7555FF7B242A565900829871 /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A62B3A3D28A1D30500C403B0 /* TileGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileGridView.swift; sourceTree = "<group>"; };
 		A68A097C28A09CCF00355913 /* macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68A097E28A09CCF00355913 /* macosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macosApp.swift; sourceTree = "<group>"; };
 		A68A098028A09CCF00355913 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,7 +80,8 @@
 		A68A09A928A0A38100355913 /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework; sourceTree = "<group>"; };
 		A68A09B128A0AAF500355913 /* shared.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = shared.framework.dSYM; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework.dSYM; sourceTree = "<group>"; };
 		A68A09B228A0AB0800355913 /* Current */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Current; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework/Versions/Current; sourceTree = "<group>"; };
-		A68A09BA28A0CE8E00355913 /* Hexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
+		A68A09BA28A0CE8E00355913 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		A68A09BF28A1876800355913 /* GameAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GameAssets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +127,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				A68A09BC28A185C500355913 /* shared */,
 				A68A09A728A0A12D00355913 /* metan-darwin.entitlements */,
 				7555FF7D242A565900829871 /* ios */,
 				A68A097D28A09CCF00355913 /* macos */,
@@ -169,7 +177,6 @@
 				A68A09A828A0A37B00355913 /* Info.plist */,
 				A68A097E28A09CCF00355913 /* macosApp.swift */,
 				A68A098028A09CCF00355913 /* ContentView.swift */,
-				A68A09BA28A0CE8E00355913 /* Hexagon.swift */,
 				A68A098228A09CD000355913 /* Assets.xcassets */,
 				A68A098728A09CD000355913 /* macos.entitlements */,
 				A68A098428A09CD000355913 /* Preview Content */,
@@ -200,6 +207,16 @@
 				A68A099C28A09CD100355913 /* macosUITestsLaunchTests.swift */,
 			);
 			path = macosUITests;
+			sourceTree = "<group>";
+		};
+		A68A09BC28A185C500355913 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				A68A09BA28A0CE8E00355913 /* Polygon.swift */,
+				A68A09BF28A1876800355913 /* GameAssets.xcassets */,
+				A62B3A3D28A1D30500C403B0 /* TileGridView.swift */,
+			);
+			path = shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A09C028A1876800355913 /* GameAssets.xcassets in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
@@ -339,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A09C128A1876800355913 /* GameAssets.xcassets in Resources */,
 				A68A098628A09CD000355913 /* Preview Assets.xcassets in Resources */,
 				A68A098328A09CD000355913 /* Assets.xcassets in Resources */,
 			);
@@ -403,7 +422,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				A62B3A3E28A1D30500C403B0 /* TileGridView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				A68A09BD28A186C200355913 /* Polygon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +433,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68A098128A09CCF00355913 /* ContentView.swift in Sources */,
+				A62B3A3F28A1D30500C403B0 /* TileGridView.swift in Sources */,
 				A68A097F28A09CCF00355913 /* macosApp.swift in Sources */,
-				A68A09BB28A0CE8E00355913 /* Hexagon.swift in Sources */,
+				A68A09BB28A0CE8E00355913 /* Polygon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
