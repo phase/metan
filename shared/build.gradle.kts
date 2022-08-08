@@ -9,7 +9,9 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
+        macosArm64(),
+        macosX64(),
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
@@ -42,6 +44,20 @@ kotlin {
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+        }
+
+        val macosArm64Main by getting
+        val macosX64Main by getting
+        val macosMain by creating {
+            dependsOn(commonMain)
+            macosX64Main.dependsOn(this)
+            macosArm64Main.dependsOn(this)
+        }
+
+        val darwinMain by creating {
+            dependsOn(commonMain)
+            macosMain.dependsOn(this)
+            iosMain.dependsOn(this)
         }
     }
 }
