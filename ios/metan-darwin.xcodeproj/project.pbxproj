@@ -18,6 +18,7 @@
 		A68A099128A09CD100355913 /* macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099028A09CD100355913 /* macosTests.swift */; };
 		A68A099B28A09CD100355913 /* macosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099A28A09CD100355913 /* macosUITests.swift */; };
 		A68A099D28A09CD100355913 /* macosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A099C28A09CD100355913 /* macosUITestsLaunchTests.swift */; };
+		A68A09BB28A0CE8E00355913 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A09BA28A0CE8E00355913 /* Hexagon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		A68A09A928A0A38100355913 /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework; sourceTree = "<group>"; };
 		A68A09B128A0AAF500355913 /* shared.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = shared.framework.dSYM; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework.dSYM; sourceTree = "<group>"; };
 		A68A09B228A0AB0800355913 /* Current */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Current; path = ../shared/build/bin/macosArm64/debugFramework/shared.framework/Versions/Current; sourceTree = "<group>"; };
+		A68A09BA28A0CE8E00355913 /* Hexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				A68A09A828A0A37B00355913 /* Info.plist */,
 				A68A097E28A09CCF00355913 /* macosApp.swift */,
 				A68A098028A09CCF00355913 /* ContentView.swift */,
+				A68A09BA28A0CE8E00355913 /* Hexagon.swift */,
 				A68A098228A09CD000355913 /* Assets.xcassets */,
 				A68A098728A09CD000355913 /* macos.entitlements */,
 				A68A098428A09CD000355913 /* Preview Content */,
@@ -410,6 +413,7 @@
 			files = (
 				A68A098128A09CCF00355913 /* ContentView.swift in Sources */,
 				A68A097F28A09CCF00355913 /* macosApp.swift in Sources */,
+				A68A09BB28A0CE8E00355913 /* Hexagon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
