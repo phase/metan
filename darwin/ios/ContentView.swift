@@ -3,7 +3,7 @@ import shared
 
 struct ContentView: View {
     let greet = Greeting().greeting()
-    let board = StandardBoardGenerator.shared.generateBoard(size: 5, tileProvider: RandomTileProvider.shared)
+    let board = StandardBoardGenerator.shared.generateBoard(size: 7, tileProvider: RandomTileProvider.shared)
 
     var body: some View {
         VStack {
