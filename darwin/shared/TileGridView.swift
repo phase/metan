@@ -24,10 +24,10 @@ struct TileGridView: View {
             let hexagonWidth: CGFloat = hexagonWidth(tileSize)
 
             ForEach(0..<tiles, id: \.self) { y in
+                let offsetY = tileOffset * CGFloat(y % tiles)
+                let lineOffset = (y % 2 == 0 ? 0 : hexagonWidth / 2)
                 ForEach(0..<tiles, id: \.self) { x in
-                    let offsetX = hexagonWidth * CGFloat(x % tiles)
-                     + (y % 2 == 0 ? 0 : hexagonWidth / 2)
-                    let offsetY = tileOffset * CGFloat(y % tiles)
+                    let offsetX = hexagonWidth * CGFloat(x % tiles) + lineOffset
                     Image(getId(x,y))
                         .resizable()
                         .clipShape(PolygonShape(sides: 6).rotation(Angle.degrees(90)))
@@ -42,7 +42,16 @@ struct TileGridView: View {
         return (tileSize / 2) * cos(.pi / 6) * 2
     }
 
+    /// get the id for a tile, could be "null"
+    // TODO: handle null tiles properly
     func getId(_ x: Int, _ y: Int) -> String {
-        return tileGrid.tiles.get(index: Int32(y))?.get(index: Int32(x))?.id ?? "null"
+        return tileGrid.get(x: Int32(x), y: Int32(y))?.id ?? "null"
+    }
+}
+
+struct TileGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        let board = StandardBoardGenerator.shared.generateBoard(size: 5, tileProvider: RandomTileProvider.shared)
+        TileGridView(tileGrid: board)
     }
 }

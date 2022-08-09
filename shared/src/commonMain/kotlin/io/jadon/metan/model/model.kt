@@ -4,6 +4,73 @@ import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.random.Random
 
+interface ResourceHolder {
+    val resources: List<Resource>
+
+    fun hasResource(target: Resource, amount: Int = 1): Boolean {
+        var foundAmount = 0
+        for (resource in resources) {
+            if (resource == target) {
+                foundAmount++
+            }
+        }
+        return foundAmount >= amount
+    }
+}
+
+// piece that collects resources, like a settlement or city
+interface ResourceCollector {
+    val collectionMultiplier: Int
+}
+
+// piece that provides resources, like a tile
+interface ResourceProvider {
+    val resource: Resource
+
+    fun giveResource(collector: ResourceCollector): Array<Resource> = emptyArray()
+}
+
+interface Recipe {
+    val requiredMaterials: Array<Pair<Resource, Int>>
+
+    fun canPurchase(player: ResourceHolder): Boolean {
+        return !requiredMaterials.map { player.hasResource(it.first, it.second) }.contains(false)
+    }
+}
+
+object Road : Recipe {
+    override val requiredMaterials = arrayOf(
+        Pair(WoodResource, 1),
+        Pair(BrickResource, 1),
+    )
+}
+
+object Settlement : Recipe, ResourceCollector {
+    override val requiredMaterials = arrayOf(
+        Pair(WheatResource, 1),
+        Pair(SheepResource, 1),
+        Pair(WoodResource, 1),
+        Pair(RockResource, 1),
+    )
+    override val collectionMultiplier: Int = 1
+}
+
+object City : Recipe, ResourceCollector {
+    override val requiredMaterials = arrayOf(
+        Pair(WheatResource, 2),
+        Pair(RockResource, 3),
+    )
+    override val collectionMultiplier: Int = 2
+}
+
+object DevelopmentCard : Recipe {
+    override val requiredMaterials = arrayOf(
+        Pair(WheatResource, 1),
+        Pair(RockResource, 1),
+        Pair(SheepResource, 1),
+    )
+}
+
 interface Resource
 
 object WheatResource : Resource
@@ -13,24 +80,35 @@ object WoodResource : Resource
 object BrickResource : Resource
 
 interface Tile {
+    // used for images in darwin targets
     val id: String
-    fun giveResource(): List<Resource> = listOf()
 }
 
-object FieldTile : Tile {
+interface ResourceTile: Tile, ResourceProvider {
+    override fun giveResource(collector: ResourceCollector): Array<Resource> {
+        return Array(collector.collectionMultiplier) { resource }
+    }
+}
+
+object FieldTile : ResourceTile {
     override val id: String = "field"
+    override val resource: Resource = WheatResource
 }
-object PastureTile : Tile{
+object PastureTile : ResourceTile {
     override val id: String = "pasture"
+    override val resource: Resource = SheepResource
 }
-object MountainTile : Tile {
+object MountainTile : ResourceTile {
     override val id: String = "mountain"
+    override val resource: Resource = RockResource
 }
-object ForestTile : Tile {
+object ForestTile : ResourceTile {
     override val id: String = "forest"
+    override val resource: Resource = WoodResource
 }
-object HillTile : Tile {
+object HillTile : ResourceTile {
     override val id: String = "hill"
+    override val resource: Resource = BrickResource
 }
 object DesertTile : Tile {
     override val id: String = "desert"
@@ -65,17 +143,18 @@ val possibleTiles = listOf(
 )
 
 interface TileProvider {
-    fun getNextTile(): Tile
+    fun nextTile(): Tile
 }
 
 object RandomTileProvider : TileProvider {
-    override fun getNextTile(): Tile = possibleTiles[Random.Default.nextInt(possibleTiles.size)]
+    override fun nextTile(): Tile = possibleTiles[Random.Default.nextInt(possibleTiles.size)]
 }
 
 interface TileGridGenerator {
     fun generateBoard(size: Int, tileProvider: TileProvider): TileGrid
 }
 
+/// standard hexagon board
 object StandardBoardGenerator : TileGridGenerator {
     override fun generateBoard(size: Int, tileProvider: TileProvider): TileGrid {
         val height = if (size % 2 == 0) size + 1 else size
@@ -91,7 +170,7 @@ object StandardBoardGenerator : TileGridGenerator {
                 val start = dy + if (yIsEven && !middleIsEven) 1 else 0
                 (start until end).forEach { x ->
                     // how far away it is from the middle tile
-                    tiles[y][x] = tileProvider.getNextTile()
+                    tiles[y][x] = tileProvider.nextTile()
                 }
             }
         }
@@ -103,7 +182,7 @@ object SquareBoardGenerator : TileGridGenerator {
         return TileGrid(size).apply {
             (0 until size).forEach { y ->
                 (0 until size).forEach { x ->
-                    tiles[y][x] = tileProvider.getNextTile()
+                    tiles[y][x] = tileProvider.nextTile()
                 }
             }
         }
