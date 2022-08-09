@@ -18,6 +18,7 @@ struct TileGridView: View {
             let tiles: Int = Int(tileGrid.size)
             let windowWidth = geometry.size.width
             let windowHeight = geometry.size.height
+            // let leftOffset = abs(windowWidth - windowHeight) / 2
             let tileSize = min(windowWidth, windowHeight) / CGFloat(tiles)
             let tileOffset = tileSize * 0.75
             let hexagonWidth: CGFloat = hexagonWidth(tileSize)
@@ -36,12 +37,12 @@ struct TileGridView: View {
             }
         }
     }
-    
+
     func hexagonWidth(_ tileSize: CGFloat) -> CGFloat {
         return (tileSize / 2) * cos(.pi / 6) * 2
     }
-    
+
     func getId(_ x: Int, _ y: Int) -> String {
-        return tileGrid.tiles.get(index: Int32(y))?.get(index: Int32(x))?.id ?? "desert"
+        return tileGrid.tiles.get(index: Int32(y))?.get(index: Int32(x))?.id ?? "null"
     }
 }
