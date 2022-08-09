@@ -1,6 +1,6 @@
 # Metan
 
-![screenshot of catan board on ios](screenshots/ios-board.png "ios board")
+![screenshot of catan board on macOS](screenshots/macos-board.png "macOS board")
 
 Catan clone using Kotlin Multiplatform Mobile (KMM) + macOS.
 
@@ -32,3 +32,8 @@ I'm not sure how to package this yet.
 # same for iOS
 ./gradlew linkDebugFrameworkIosArm64
 ```
+
+## Prior Art
+
+- [Colonizers](https://github.com/sibartlett/colonizers)
+- [Tinc Is Not Catan](https://github.com/seansegal/tincisnotcatan)

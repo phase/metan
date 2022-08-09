@@ -4,6 +4,10 @@ import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.random.Random
 
+interface Board {
+    val tileGrid: TileGrid
+}
+
 interface ResourceHolder {
     val resources: List<Resource>
 
@@ -118,8 +122,9 @@ object SeaTile : Tile {
     override val id: String = "sea"
 }
 
-class TileGrid(val size: Int = STANDARD_BOARD_SIZE) {
+data class TileGrid(val size: Int = STANDARD_BOARD_SIZE, val maxWidth: Int = size) {
     val tiles = Array(size) { arrayOfNulls<Tile>(size) }
+    val numbers = Array(size) { Array(size) { Random.Default.nextInt(2, 13) } }
 
     fun get(x: Int, y: Int) = tiles[y][x]
 
@@ -160,7 +165,7 @@ object StandardBoardGenerator : TileGridGenerator {
         val height = if (size % 2 == 0) size + 1 else size
         val half = floor(height.toFloat() / 2.0f)
         val middleIsEven = half.toInt() % 2 == 0
-        return TileGrid(height).apply {
+        return TileGrid(height, maxWidth = size).apply {
             (0 until height).forEach { y ->
                 val yIsEven = y % 2 == 0
                 val dy = abs(floor((abs(y - half)) / 2)).toInt()

@@ -11,6 +11,7 @@ struct ContentView: View {
 
             TileGridView(tileGrid: board)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

@@ -5,6 +5,7 @@ struct macosApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .navigationTitle("Metan")
         }
     }
 }
