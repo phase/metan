@@ -2,29 +2,81 @@ import Foundation
 import SwiftUI
 import shared
 
+func hexagonWidth(_ tileSize: CGFloat) -> CGFloat {
+    return (tileSize / 2) * cos(.pi / 6) * 2
+}
+
+struct IntersectionView: View {
+    let tileView: TileView
+    var body: some View {
+        Circle()
+            .opacity(0)
+            .allowsHitTesting(true)
+            .onTapGesture {
+                tileView.flag = !tileView.flag
+            }
+    }
+}
+
+struct HexagonImageView: View {
+    let imageId: String
+    var body: some View {
+        Image(imageId)
+            .resizable()
+            .clipShape(PolygonShape(sides: 6).rotation(Angle.degrees(90)))
+    }
+}
+
+struct NumberView: View {
+    let number: Int
+    let color: Color
+    let circleSize: CGFloat
+    var body: some View {
+        Circle()
+            .fill(color)
+            .frame(width: circleSize, height: circleSize)
+        Text(String(number))
+            .foregroundColor(.white)
+            .shadow(radius: 5)
+    }
+}
+
 /// View for an individual Tile
 struct TileView: View {
     let tile: Tile?
     let number: Int?
     let tileSize: CGFloat
+    @State var flag: Bool = true
     
     var body: some View {
         ZStack {
-            Image(tile?.id ?? "null")
-                .resizable()
-                .clipShape(PolygonShape(sides: 6).rotation(Angle.degrees(90)))
-            Circle()
-                .fill(.blue)
-                .frame(width: tileSize / 4, height: tileSize / 4)
-            Text(String(number ?? 0))
-                .foregroundColor(.white)
-                .shadow(radius: 5)
+            HexagonImageView(imageId: tile?.id ?? "desert")
+            NumberView(
+                number: number ?? 0,
+                color: flag ? .blue : .red,
+                circleSize: tileSize / 4
+            )
+
+            // build intersections
+            let intersections = 12
+            ForEach(0..<intersections, id: \.self) { i in
+                let angle = angle(i, intersections)
+                let offsetX = CGFloat(cos(angle) * tileSize / 2)
+                let offsetY = CGFloat(sin(angle) * hexagonWidth(tileSize) / 2)
+                IntersectionView(tileView: self)
+                    .offset(x:offsetX, y: offsetY)
+                    .frame(width: tileSize / 4, height: tileSize / 4)
+            }
         }
         .frame(
             // turn this tile off if it is nil
             width: tile == nil ? 0 : tileSize,
             height: tile == nil ? 0 : tileSize
         )
+    }
+    
+    func angle(_ i: Int, _ sides: Int) -> Double {
+        return (Double(i) * (360.0 / Double(sides))) * Double.pi / 180
     }
 }
 
@@ -60,10 +112,7 @@ struct TileGridView: View {
                 }
             }
         }
-    }
-
-    func hexagonWidth(_ tileSize: CGFloat) -> CGFloat {
-        return (tileSize / 2) * cos(.pi / 6) * 2
+        .drawingGroup()
     }
 
     /// get the id for a tile, could be "null"
